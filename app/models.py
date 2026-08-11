@@ -11,7 +11,7 @@ class User(Base):
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
 
-    notes = relationship("Note", back_populates="author")
+    notes = relationship("Note", back_populates="author", cascade="all, delete-orphan")
 
 
 class Note(Base):
