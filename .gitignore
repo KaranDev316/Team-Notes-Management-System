@@ -3,3 +3,7 @@ PROMPT_CHAIN.md
 PRP.md
 VERIFICATION_PLAN.md
 VERTICAL_SLICE_PLAN.md
+.venv/
+.venv-1/
+__pycache__/
+*.py[cod]
