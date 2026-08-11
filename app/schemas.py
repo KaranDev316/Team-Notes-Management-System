@@ -23,7 +23,7 @@ class User(BaseModel):
     email: str
 
     model_config = ConfigDict(from_attributes=True)
-    author_id: int
+   
 
 
 # Properties to receive on item update (PATCH)

@@ -8,5 +8,5 @@
         <div class="note-meta">by {{ note.author.username if note.author else "Unknown" }} (ID: {{ note.id }})</div>
         <div class="note-content">{{ note.content if note.content else "" }}</div>
     </div>
-    <a class="back-link" href="/notes">&larr; Back to all notes</a>
+    <a class="back-link" href="{{ url_for('notes_list_page') }}">&larr; Back to all notes</a>
 {% endblock %}

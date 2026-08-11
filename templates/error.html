@@ -6,6 +6,6 @@
     <div class="error-box">
         <h2>{{ status_code }} - {{ message }}</h2>
         <p>The page you requested could not be found or is unavailable.</p>
-        <a class="back-link" href="/notes">&larr; Back to all notes</a>
+        <a class="back-link" href="{{ url_for('notes_list_page') }}">&larr; Back to all notes</a>
     </div>
 {% endblock %}

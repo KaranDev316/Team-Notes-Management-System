@@ -8,7 +8,7 @@
         <ul class="note-list">
             {% for note in notes %}
                 <li>
-                    <a href="/notes/{{ note.id }}">{{ note.title }}</a>
+                    <a href="{{ url_for('note_detail_page', note_id=note.id) }}">{{ note.title }}</a>
                     <div class="note-meta">by {{ note.author.username if note.author else "Unknown" }}</div>
                 </li>
             {% endfor %}

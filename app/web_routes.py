@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
@@ -22,7 +22,7 @@ async def read_root(request: Request):
 
 
 @router.get("/notes", response_class=HTMLResponse, include_in_schema=False)
-def read_notes(request: Request, db: Session = Depends(get_db)):
+def notes_list_page(request: Request, db: Session = Depends(get_db)):
     """
     Server-rendered page listing all notes.
     """
@@ -35,7 +35,7 @@ def read_notes(request: Request, db: Session = Depends(get_db)):
 
 
 @router.get("/notes/{note_id}", response_class=HTMLResponse, include_in_schema=False)
-def read_note_detail(request: Request, note_id: int, db: Session = Depends(get_db)):
+def note_detail_page(request: Request, note_id: int, db: Session = Depends(get_db)):
     """
     Server-rendered page showing a single note with its author information.
     """
@@ -45,15 +45,7 @@ def read_note_detail(request: Request, note_id: int, db: Session = Depends(get_d
         .first()
     )
     if note is None:
-        return templates.TemplateResponse(
-            request=request,
-            name="error.html",
-            context={
-                "status_code": 404,
-                "message": "Note not found",
-            },
-            status_code=404,
-        )
+        raise HTTPException(status_code=404, detail="Note not found")
 
     return templates.TemplateResponse(
         request=request,
