@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}Error {{ status_code }}{% endblock %}
+
+{% block content %}
+    <div class="error-box">
+        <h2>{{ status_code }} - {{ message }}</h2>
+        <p>The page you requested could not be found or is unavailable.</p>
+        <a class="back-link" href="/notes">&larr; Back to all notes</a>
+    </div>
+{% endblock %}
